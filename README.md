@@ -40,7 +40,7 @@ The backend follows a layered structure: routes handle HTTP/WebSocket concerns, 
 
 ## Database Design
 
-10 relational tables (users, wallets, coins, holdings, transactions, watchlist, news, etc.) plus a TimescaleDB hypertable (`price_history`) for OHLC candle data, partitioned by time for efficient range queries at scale.
+5 relational tables (users, coins, holdings, transactions, watchlist) plus a TimescaleDB hypertable (`price_history`) for OHLC candle data, partitioned by time for efficient range queries at scale.
 
 ## Notable Engineering Details
 
