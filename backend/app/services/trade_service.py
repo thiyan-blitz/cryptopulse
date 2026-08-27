@@ -36,7 +36,7 @@ async def buy_coin(db:AsyncSession,user_id:uuid.UUID,symbol:str,quantity:Decimal
     current_price=_get_current_price(symbol)
     total_cost=quantity*current_price
 
-    query=select(Wallet).where(Wallet.user_id==user_id)
+    query=select(Wallet).where(Wallet.user_id==user_id).with_for_update()
     wallet=(await db.execute(query)).scalar_one_or_none()
     if not wallet:
         raise HTTPException(
@@ -109,7 +109,7 @@ async def sell_coin(db:AsyncSession,user_id:uuid.UUID,symbol:str,quantity:Decima
             detail="Insufficient holdings"
         )
 
-    query=select(Wallet).where(Wallet.user_id==user_id)
+    query=select(Wallet).where(Wallet.user_id==user_id).with_for_update()
     wallet=(await db.execute(query)).scalar_one_or_none()
 
     if not wallet:
