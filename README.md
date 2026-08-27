@@ -2,7 +2,6 @@
 
 A full-stack cryptocurrency trading simulator with real-time price streaming, portfolio management, and technical analytics — built to explore production-grade patterns for real-time data, authentication, and time-series storage.
 
-**Repo:** https://github.com/thiyan-blitz/cryptopulse
 
 ---
 
