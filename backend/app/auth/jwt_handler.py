@@ -20,6 +20,6 @@ def create_refresh_token(user_id:str|Any,expires_delta:Optional[timedelta]=None)
         "sub":str(user_id),
         "type":"refresh"
         }
-    return jwt.encode(payload,settings.REFRESH_SECRET_KEY,algorithm=settings.ALGORITHM)
+    return jwt.encode(payload,settings.SECRET_KEY,algorithm=settings.ALGORITHM)
 
 

@@ -4,9 +4,8 @@ from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
 class Settings(BaseSettings):
-    SECRET_KEY: str
-    REFRESH_SECRET_KEY: str
-    DATABASE_URL: str
+    SECRET_KEY: str=os.getenv("SECRET_KEY")
+    DATABASE_URL: str=os.getenv("DATABASE_URL")
 
     ALGORITHM: str = "HS256"
     ACCESS_TOKEN_EXPIRE_MINUTES: int = 15
