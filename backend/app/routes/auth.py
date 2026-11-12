@@ -10,14 +10,9 @@ from app.auth.jwt_handler import create_access_token, create_refresh_token
 from app.core.config import settings
 from app.models.User import User
 from app.auth.dependencies import get_current_user
-from app.services.binance_listener import latest_prices
 
 router = APIRouter(prefix="/auth", tags=["Authentication"])
 
-
-@router.get("/debug/prices")
-async def debug_prices():
-    return dict(list(latest_prices.items())[:5])
 
 @router.get("/me", response_model=UserResponse)
 async def get_me(current_user: User = Depends(get_current_user)):
