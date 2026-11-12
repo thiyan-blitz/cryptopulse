@@ -1,4 +1,4 @@
-from sqlalchemy import ForeignKey,Numeric,DateTime,func
+from sqlalchemy import ForeignKey,Numeric,DateTime,func,UniqueConstraint
 from sqlalchemy.orm import Mapped,mapped_column,relationship
 from app.database.base import Base
 from sqlalchemy.dialects.postgresql import UUID
@@ -11,6 +11,7 @@ if TYPE_CHECKING:
     from app.models.User import User
 class Wallet(Base):
     __tablename__="wallet"
+    __table_args__ = (UniqueConstraint("user_id", name="uq_wallet_user"),)
 
     id:Mapped[uuid.UUID]=mapped_column(UUID(as_uuid=True),primary_key=True,default=uuid.uuid4)
     user_id:Mapped[uuid.UUID]=mapped_column(UUID(as_uuid=True),ForeignKey("user.id"))
